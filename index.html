@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .game-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #gameCanvas {
+            border: 3px solid white;
+            border-radius: 10px;
+            background: #000;
+            display: none;
+        }
+
+        .menu {
+            color: white;
+            padding: 20px;
+        }
+
+        .menu button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-info {
+            color: white;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .game-info div {
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .pause-menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            display: none;
+            text-align: center;
+        }
+
+        .instructions {
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .game-over {
+            color: white;
+            padding: 20px;
+            display: none;
+        }
+
+        .game-over h2 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🐍 Snake Game</h1>
+        
+        <!-- Start Menu -->
+        <div id="startMenu" class="menu">
+            <h2>Welcome to Snake Game!</h2>
+            <button onclick="startGame()">Start Game</button>
+            <div class="instructions">
+                <p>Use arrow keys to control the snake</p>
+                <p>Press spacebar to pause the game</p>
+                <p>Eat food to grow and gain points</p>
+            </div>
+        </div>
+
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        
+        <!-- Game Info -->
+        <div id="gameInfo" class="game-info">
+            <div>Score: <span id="score">0</span></div>
+            <div>Time: <span id="timer">00:00</span></div>
+            <div>Length: <span id="length">1</span></div>
+        </div>
+
+        <!-- Pause Menu -->
+        <div id="pauseMenu" class="pause-menu">
+            <h2>Game Paused</h2>
+            <button onclick="resumeGame()">Resume Game</button>
+            <button onclick="restartGame()">Restart Game</button>
+            <button onclick="backToMenu()">Back to Menu</button>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverMenu" class="game-over">
+            <h2>Game Over!</h2>
+            <div>Final Score: <span id="finalScore">0</span></div>
+            <div>Game Time: <span id="finalTime">00:00</span></div>
+            <div>Snake Length: <span id="finalLength">1</span></div>
+            <br>
+            <button onclick="restartGame()">Play Again</button>
+            <button onclick="backToMenu()">Back to Menu</button>
+        </div>
+    </div>
+
+    <script src="snake-game.js"></script>
+</body>
+</html>
